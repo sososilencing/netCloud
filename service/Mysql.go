@@ -41,7 +41,7 @@ func Login(user *model.User)  bool{
 func InsertFile(file *model.File)  bool{
 
 	db.Where("filename = ? AND private = ? AND owner=?",file.Filename,file.Private,file.Owner).Find(&file)
-	f
+
 	if file.Id==0{
 		db.Create(file)
 		return true

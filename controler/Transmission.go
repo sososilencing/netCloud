@@ -43,7 +43,17 @@ func  Transmission(c *gin.Context)  {
 
 	filename := header.Filename
 
-	path1:=".//" + "tmp//" + filename
+	path4:=".//" + "tmp//"
+	bl,err := PathExists(path4)
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	if !bl {
+		os.Mkdir(path4,os.ModePerm)
+	}
+	path1 := path4 +filename
 	out, err := os.Create(path1)
 	if err != nil {
 		fmt.Println(err.Error())
